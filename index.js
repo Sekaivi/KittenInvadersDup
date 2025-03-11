@@ -1,7 +1,7 @@
 const express = require("express");
 const { readFile } = require("fs/promises");
 const path = require("path");
-const PORT = 3333;
+const PORT = 80;
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
