@@ -28,6 +28,7 @@ class World {
                 bulletImagePath: "media/boss4_bullet.png", name: 'Death', healthchange: 1000
             }
         ];
+<<<<<<< HEAD
         this.playerUpgrades = { // ameliorations possible dans le jeu
             gris: [
                 { description: "+10% atk, +10% atk speed", buffs: { atk: 1.1, atkSpeed: 1.1 } },
@@ -71,11 +72,16 @@ class World {
             ]
         };
         this.upgradesChosen = {};
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         this.boss = null;
         this.currentBossIndex = 0;
         this.canvasWidth = null;
         this.canvasHeight = null;
+<<<<<<< HEAD
         this.paused = true;
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
     }
 
     addPlayer(playerId) {
@@ -91,6 +97,7 @@ class World {
         player.keys = keys;
     }
 
+<<<<<<< HEAD
     updatePlayerUpgrades(playerId, buffs) {
         let player = this.players[playerId];
         if (this.upgradesChosen[playerId]) {
@@ -115,6 +122,8 @@ class World {
         }
     }
 
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
     killPlayer(playerId) {
         let player = this.players[playerId];
         if (player) {
@@ -124,7 +133,10 @@ class World {
     }
 
     loadBoss() {
+<<<<<<< HEAD
         this.togglePause();
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         const bossData = this.bosses[this.currentBossIndex];
         if (bossData) {
             this.boss = new BossServ(bossData.health,
@@ -134,6 +146,10 @@ class World {
             // le reste des infos du tableau non utilisé sur le serveur vont vers le client
             this.io.emit('loadBoss', bossData);
             this.currentBossIndex++;
+<<<<<<< HEAD
+=======
+            console.log(this.currentBossIndex);
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         } else {
             console.log('no boss left to fight') // afficher ecran de victoire coté client
             this.io.emit('victory');
@@ -142,6 +158,7 @@ class World {
     }
 
     gameStart() {
+<<<<<<< HEAD
         this.gameInterval = setInterval(() => this.updateGame(), 1000 / 120); // ajuster ici la vitesse de jeu
     }
 
@@ -261,6 +278,55 @@ class World {
             upgradesByPlayer
         }
         return upgradesData;
+=======
+        console.log('Starting game');
+        this.loadBoss();
+        this.gameInterval = setInterval(() => this.updateGame(), 1000 / 60); // ajuster ici la vitesse de jeu
+    }
+
+    updateGame() {
+        if (this.boss.health == 0) {
+            this.loadBoss();
+            return;
+        }
+        // le boss
+        this.boss.patterns();
+        // concernant les joueurs
+        const newPlayerData = {};
+        for (let playerId in this.players) {
+            const player = this.players[playerId];
+            if (player.isDead) {
+                console.log('player is dead') ;
+                // continue; 
+            }
+            if (player.health <= 0) {
+                console.log('killing player') ;
+                /* this.killPlayer(playerId);
+                continue; */
+            }
+            this.boss.updateBossBullets(player);
+            player.move();
+            player.shoot();
+            player.activateSpecial();
+            player.updateProjectiles();
+            player.updateSpecialProjectiles();
+            player.checkSpecialCollisions(this.boss.bullets);
+            player.checkCollisions(this.boss);
+            player.checkSpecialCollisionsWithBoss(this.boss);
+            player.calcDmgMultiplyer();
+        }
+
+        const newBossData = {
+            health: this.boss.health,
+            positionh: this.boss.positionh,
+            positionv: this.boss.positionv,
+            bullets: this.boss.bullets,
+            telegraphedZones: this.boss.telegraphedZones
+        }
+
+        // l'état des joueurs (morts ou en vie ?)
+        this.io.emit('updateGame', { newBossData, newPlayerData });
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
     }
 
 }

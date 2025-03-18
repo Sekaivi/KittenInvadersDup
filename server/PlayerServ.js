@@ -17,7 +17,10 @@ class PlayerServ {
         this.maxHp = 5;
         this.health = 5;
         this.isDead = false ;
+<<<<<<< HEAD
         this.invulnerable = false;
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         // Gestion de la surcharge du tir
         this.fireRate = 1000 / this.atkSpeed;
         this.lastShot = 0;
@@ -251,6 +254,7 @@ class PlayerServ {
     }
 
     takeDamage(amount) {
+<<<<<<< HEAD
         if (this.invulnerable) {
             console.log("Damage ignored: Cooldown active.");
             return;
@@ -264,6 +268,12 @@ class PlayerServ {
             this.invulnerable = false;
             console.log("Cooldown over: Player can take damage again.");
         }, 1000);
+=======
+        this.health -= amount;
+        if (this.health <= 0) {
+            console.log('Player is dead') ; // puis dire au client d'appeler la fonction "defeated"
+        }
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
     }
 }
 

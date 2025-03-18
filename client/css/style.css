@@ -11,9 +11,13 @@
 canvas {
     display: block;
     margin: 0 auto;
+<<<<<<< HEAD
     background-image: url('../media/wp.png');
     background-size: cover;
     background-position: center;
+=======
+    background-color: black;
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 }
 
 /* Modal (hidden by default) */

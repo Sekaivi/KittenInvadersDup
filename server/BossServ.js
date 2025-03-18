@@ -1,7 +1,13 @@
 class BossServ {
+<<<<<<< HEAD
     constructor(health, attackPatterns, name, healthchange, width, height, totalFrames, canvasWidth, canvasHeight) {
         this.canvaswidth = canvasWidth;
         this.canvasHeight = canvasHeight;
+=======
+    constructor(health, attackPatterns, name, healthchange , width , height , totalFrames , canvasWidth , canvasHeight) {
+        this.canvaswidth = canvasWidth ;
+        this.canvasHeight = canvasHeight ;
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -469,7 +475,11 @@ class BossServ {
     }
 
 
+<<<<<<< HEAD
     updateBossBullets(players) {
+=======
+    updateBossBullets(player) {
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         for (let i = this.bullets.length - 1; i >= 0; i--) {
             const bullet = this.bullets[i];
             bullet.x += bullet.dx;
@@ -478,6 +488,7 @@ class BossServ {
             // Retirer les projectiles qui sortent de l'écran
             if (bullet.y > this.canvasHeight || bullet.y < 0 || bullet.x < 0 || bullet.x > this.canvasWidth) {
                 this.bullets.splice(i, 1);
+<<<<<<< HEAD
                 continue;
             }
 
@@ -499,6 +510,24 @@ class BossServ {
                         this.bullets.splice(i, 1);
                     }
                     break; // Sortir de la boucle des joueurs pour éviter d'affecter plusieurs à la fois
+=======
+            }
+
+            // Détection de collision avec le joueur
+            if (
+                bullet.x > player.x - player.size / 2 &&
+                bullet.x < player.x + player.size / 2 &&
+                bullet.y > player.y - player.size / 2 &&
+                bullet.y < player.y + player.size / 2
+            ) {
+                console.log("A player has taken some damage") ;
+                player.takeDamage(1)
+                if (player.destroyAllBullets) {
+                    this.bullets = [];
+                    break; // sinon y a des erreurs
+                } else {
+                    this.bullets.splice(i, 1); // si on ne veut enlever qu'un seul projectile   
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
                 }
             }
         }
@@ -508,6 +537,10 @@ class BossServ {
         this.health -= amount;
         if (this.health <= 0) {
             this.health = 0;
+<<<<<<< HEAD
+=======
+            console.log('Boss is dead') ; // puis dire au client d'appeler la fonction "defeated"
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
         }
     }
 

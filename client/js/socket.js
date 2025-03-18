@@ -1,9 +1,13 @@
 const socket = io();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 let boss;
 let players = {}; // faut faire en sorte d'ajouter le joueur 2 en tant qu'objet !!!! Par contre il ne faut pas pouvoir le controler >:(
 let player1Id = null;
 let player2Id = null;
+<<<<<<< HEAD
 let gameIsRunning = false ;
 let paused = false ;
 
@@ -32,12 +36,18 @@ quit.onclick = function (){
 
 socket.on("connect", () => {
     displayConnecting() ;
+=======
+
+
+socket.on("connect", () => {
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
     player1Id = socket.id;
     let x = canvas.width / 2;
     let y = canvas.height / 2;
     players[player1Id] = new Player(x, y, "media/player.png", scaleX, scaleY);
 });
 
+<<<<<<< HEAD
 socket.on("waiting", (message) => { // assembler ça avec la communication suivante ?
     displayDialog(message) ;
 });
@@ -90,6 +100,23 @@ socket.on('startGame', () => {
         gameIsRunning = true ;
     }
     
+=======
+socket.on("currentPlayers", (serverPlayers) => {
+    console.log('A user has connected ! current players in the game:');
+    Object.keys(serverPlayers).forEach((newPlayer) => {
+        if (newPlayer != player1Id) {
+            player2Id = newPlayer;
+            let x = canvas.width / 2 - 200;
+            let y = canvas.height / 2 - 200;
+            players[player2Id] = new Player(x, y, "media/player.png", scaleX, scaleY);
+        }
+    });
+});
+
+socket.on('startGame', () => {
+    console.log("Starting game :D");
+    initGame();
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 });
 
 socket.on("updateBullets", (updatedBullets) => {
@@ -126,10 +153,13 @@ socket.on("updateGame", (newGameData) => {
 
 });
 
+<<<<<<< HEAD
 socket.on("gameOver", () => {
     displayGameOver() ;
 });
 
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 
 
 socket.on("loadBoss", (bossInfo) => {
@@ -157,10 +187,13 @@ function handleKeyChange(key, isPressed) {
     socket.emit("updatePlayerKeys", keys);
 }
 
+<<<<<<< HEAD
 function addUpgrade(upgrades) {
     socket.emit("addUpgrade", upgrades);
     displayDialog("En attente du choix du joueur 2") ;
 }
+=======
+>>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 
 
 // CE QUE LE CLIENT RECOIT:
