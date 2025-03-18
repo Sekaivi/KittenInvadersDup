@@ -142,7 +142,7 @@ class World {
     }
 
     gameStart() {
-        this.gameInterval = setInterval(() => this.updateGame(), 1000 / 120); // ajuster ici la vitesse de jeu
+        this.gameInterval = setInterval(() => this.updateGame(), 1000 / 30); // ajuster ici la vitesse de jeu
     }
 
     trackGameOver(){
