@@ -1,4 +1,4 @@
-console.log('test git') ;
+
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
