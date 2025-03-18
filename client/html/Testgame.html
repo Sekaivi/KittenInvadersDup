@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" contents="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boss Battle</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/game.js" defer="defer"></script>
+  <script src="/js/socket.js" defer="defer"></script>
+  <script src="/js/Player.js"></script>
+  <script src="/js/Boss.js"></script>
+</head>
+
+<body>
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="connectingToGame" class="modal">
+    <div class="modal-content">
+      <button id="createRoom">Create room</button>
+      <button id="displayJoinRoom">Join a Room</button>
+    </div>
+  </div>
+
+  <div id="joiningRoom" class="modal">
+    <div class="modal-content">
+      <p id="joiningText"></p>
+      <input type="text" id="roomCodeInput" placeholder="Ex: ABCD">
+      <br>
+      <button id="joinRoom">Join room</button>
+      <button id="cancelJoin">Annuler</button>
+    </div>
+  </div>
+
+  <div id="gameOverScreen" class="modal">
+    <div class="modal-content">
+      <p>Both players died !! It's a GAME OVER :(</p>
+      <button id="playAgain">Play again</button>
+      <button id="quit">Quit</button>
+    </div>
+  </div>
+
+  <div id="DialogBox" class="modal">
+    <div class="modal-content">
+      <p id="dialogText"></p>
+    </div>
+  </div>
+
+  <div id="UpgradesBox" class="modal">
+    <div class="modal-content">
+      <p id="upgradesText"></p>
+      <div id="upgradesMenu">
+        <button id="upgrade1" class="upgradeButton">Upgrade 1</button>
+        <button id="upgrade2" class="upgradeButton">Upgrade 2</button>
+        <button id="upgrade3" class="upgradeButton">Upgrade 3</button>
+      </div>
+      <button disabled id="confirmButton">Choisir une upgrade nya~ :</button>
+    </div>
+  </div>
+
+</body>
+
+</html>
