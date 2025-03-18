@@ -152,13 +152,4 @@ class Player {
         }
     }
 
-<<<<<<< HEAD
-=======
-    
-
-    defeated() {
-        const dialog = document.getElementById('PlayerDefeatDialog');
-        dialog.style.display = 'block';
-    }
->>>>>>> 3a832835646b665a2511d5ca2b97f4963570259e
 }
