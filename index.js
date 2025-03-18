@@ -4,7 +4,7 @@ const { Server } = require("socket.io");
 const World = require('./server/World');
 const path = require("path");
 
-const PORT = 3333;
+const PORT = 80;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
